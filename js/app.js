@@ -7,29 +7,39 @@ var Fideligard = angular.module('Fideligard', ['ui.router']);
 
 Fideligard.config(function($stateProvider, $urlRouterProvider) {
 
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/stocks');
 
+  // http://stackoverflow.com/a/26241415
 
   $stateProvider
     .state('stocks', {
       url: '/stocks',
       controller: 'StocksCtrl',
-      templateUrl: 'templates/stocks/index.html'
+      templateUrl: '/js/templates/stocks/index.html',
+      resolve: {
+        stocks: function(StockService) {
+          return StockService.all();
+        },
+
+        dates: function(StockService) {
+          return StockService.dates();
+        }
+      }
     })
     .state('trades', {
       url: '/trades',
       controller: 'TradesCtrl',
-      templateUrl: 'templates/trades/index.html'
+      templateUrl: '/js/templates/trades/index.html'
     })
     .state('transactions', {
       url: '/transactions',
       controller: 'TransactionsCtrl',
-      templateUrl: 'templates/transactions/index.html'
+      templateUrl: '/js/templates/transactions/index.html'
     })
     .state('portfolio', {
       url: '/portfolio',
       controller: 'PortfoliosCtrl',
-      templateUrl: 'templates/portfolios/show.html'
+      templateUrl: '/js/templates/portfolios/show.html'
     });
 
 });
