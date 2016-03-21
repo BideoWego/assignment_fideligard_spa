@@ -23,6 +23,9 @@
 
     <!-- Bootstrap JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <!-- My Styles -->
+    <link rel="stylesheet" href="/css/style.css">
   </head>
   <body>
 
@@ -30,7 +33,7 @@
     <div main-nav></div>
 
     <!-- Main Container -->
-    <main class="container">
+    <main id="main-container" class="container">
       <div class="row">
         <div class="col-xs-12">
 
@@ -42,8 +45,20 @@
           </header>
 
           <!-- UI Views -->
-          <div ui-view="dates"></div>
-          <div ui-view="stocks"></div>
+          <div ui-view>
+            <div class="row">
+              <div class="col-xs-4">
+                <div ui-view="stocks"></div>
+              </div>
+
+              <div class="col-xs-8">
+                <div ui-view="dates"></div>
+                <div ui-view="trades"></div>
+                <div ui-view="transactions"></div>
+                <div ui-view="portfolio"></div>
+              </div>
+            </div>
+          </div>
           
         </div>
       </div>

@@ -1,0 +1,18 @@
+/*
+  Style
+*/
+
+@media (min-width: 1500px) {
+  #main-container {
+    width: 1450px;
+  }
+}
+
+@media (min-width: 2000px) {
+  #main-container {
+    width: 1950px;
+  }
+}
+
+
+

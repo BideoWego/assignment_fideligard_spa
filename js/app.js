@@ -7,15 +7,24 @@ var Fideligard = angular.module('Fideligard', ['ui.router']);
 
 Fideligard.config(function($stateProvider, $urlRouterProvider) {
 
-  $urlRouterProvider.otherwise('/stocks');
+  $urlRouterProvider.otherwise('/portfolio');
 
   // http://stackoverflow.com/a/26241415
 
   $stateProvider
-    .state('stocks', {
-      url: '/stocks',
-      controller: 'StocksCtrl',
-      templateUrl: '/js/templates/stocks/index.html',
+    .state('root', {
+      abstract: true,
+      views: {
+        "": {
+          controller: 'StocksCtrl'
+        },
+        "stocks@root": {
+          templateUrl: '/js/templates/stocks/index.html'
+        },
+        "dates@root": {
+          templateUrl: '/js/templates/stocks/dates.html'
+        }
+      },
       resolve: {
         stocks: function(StockService) {
           return StockService.all();
@@ -26,20 +35,32 @@ Fideligard.config(function($stateProvider, $urlRouterProvider) {
         }
       }
     })
-    .state('trades', {
+    .state('root.trades', {
       url: '/trades',
-      controller: 'TradesCtrl',
-      templateUrl: '/js/templates/trades/index.html'
+      views: {
+        "trades@root": {
+          controller: 'TradesCtrl',
+          templateUrl: '/js/templates/trades/index.html'
+        }
+      }
     })
-    .state('transactions', {
+    .state('root.transactions', {
       url: '/transactions',
-      controller: 'TransactionsCtrl',
-      templateUrl: '/js/templates/transactions/index.html'
+      views: {
+        "transactions@root": {
+          controller: 'TransactionsCtrl',
+          templateUrl: '/js/templates/transactions/index.html'
+        }
+      }
     })
-    .state('portfolio', {
+    .state('root.portfolio', {
       url: '/portfolio',
-      controller: 'PortfoliosCtrl',
-      templateUrl: '/js/templates/portfolios/show.html'
+      views: {
+        "portfolio@root": {
+          controller: 'PortfoliosCtrl',
+          templateUrl: '/js/templates/portfolios/show.html'
+        }
+      }
     });
 
 });
