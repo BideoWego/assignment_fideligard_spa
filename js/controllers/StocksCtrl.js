@@ -3,15 +3,28 @@
 // ----------------------------------------
 
 Fideligard.controller('StocksCtrl',
-  ['$scope', 'StockService', 'stocks',
-  function($scope, StockService, stocks) {
+  ['$scope', '$rootScope', '$timeout', 'StockService', 'stocks',
+  function($scope, $rootScope, $timeout, StockService, stocks) {
 
     $scope.foo = 'bar';
 
     $scope.dates = StockService.dates();
+    
+    $rootScope.globals = {
+      dateIndex: $scope.dates.length - 1,
+      date: $scope.dates[$scope.dates.length - 1],
+      startDate: $scope.dates[0],
+      endDate: $scope.dates[$scope.dates.length - 1]
+    };
+    $timeout(function() {
+      $('#date-picker').val($rootScope.globals.dateIndex); }
+    , 1);
 
-    console.log(stocks);
-    console.log(StockService.dates());
+
+    $scope.updateDate = function() {
+      var index = $rootScope.globals.dateIndex;
+      $rootScope.globals.date = $scope.dates[index];
+    };
 
   }]);
 

@@ -9,8 +9,6 @@ Fideligard.config(function($stateProvider, $urlRouterProvider) {
 
   $urlRouterProvider.otherwise('/portfolio');
 
-  // http://stackoverflow.com/a/26241415
-
   $stateProvider
     .state('root', {
       abstract: true,
@@ -29,7 +27,6 @@ Fideligard.config(function($stateProvider, $urlRouterProvider) {
         stocks: function(StockService) {
           return StockService.all();
         },
-
         dates: function(StockService) {
           return StockService.dates();
         }

@@ -14,7 +14,6 @@ Fideligard.factory('StockService',
         url: '/data/stocks.json',
       })
         .then(function(response) {
-          console.log(response);
           StockService.stocks = response.data.query.results.quote;
           return StockService.stocks.slice();
         }, function(response) {

@@ -1,1 +1,19 @@
-<p>Stocks Dates {{ foo }}</p>
+<div class="well">
+  <div style="position: relative; width: 100%; height: 24px;">
+    <div style="position: absolute; width: 100%;" class="text-left">{{ globals.startDate }}</div>
+    <div style="position: absolute; width: 100%;" class="text-center">{{ globals.date }}</div>
+    <div style="position: absolute; width: 100%;" class="text-right">{{ globals.endDate }}</div>
+  </div>
+  <div class="form-group">
+    <input id="date-picker" value="0" type="range" min="0" ng-attr-max="{{ dates.length - 1 }}" ng-change="updateDate()" ng-model="globals.dateIndex">
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
