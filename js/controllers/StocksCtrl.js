@@ -9,6 +9,10 @@ Fideligard.controller('StocksCtrl',
     $scope.foo = 'bar';
 
     $scope.dates = StockService.dates();
+    $scope.symbols = StockService.symbols();
+
+    console.log($scope.dates);
+    console.log($scope.symbols);
     
     $rootScope.globals = {
       dateIndex: $scope.dates.length - 1,
