@@ -24,12 +24,15 @@ Fideligard.config(function($stateProvider, $urlRouterProvider) {
         }
       },
       resolve: {
-        stocks: function(StockService) {
+        stocks: ['StockService', function(StockService) {
           return StockService.all();
-        },
-        dates: function(StockService) {
+        }],
+        dates: ['stocks', 'StockService', function(stocks, StockService) {
           return StockService.dates();
-        }
+        }],
+        symbols: ['stocks', 'StockService', function(stocks, StockService) {
+          return StockService.symbols();
+        }]
       }
     })
     .state('root.trades', {
@@ -37,7 +40,7 @@ Fideligard.config(function($stateProvider, $urlRouterProvider) {
       views: {
         "trades@root": {
           controller: 'TradesCtrl',
-          templateUrl: '/js/templates/trades/index.html'
+          templateUrl: '/js/templates/trades/form.html'
         }
       }
     })
