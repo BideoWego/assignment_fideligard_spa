@@ -3,22 +3,46 @@
 // ----------------------------------------
 
 Fideligard.factory('StockService',
-  ['$http', function($http) {
+  ['$http',
+  function($http) {
+
+
+    var _symbols = [
+      'a',
+      'aapl',
+      'abc',
+      'bac',
+      'cbs',
+      'fb',
+      'nflx',
+      'nke',
+      'sam',
+      'twtr'
+    ];
+
 
     var StockService = {};
 
     StockService.stocks = [];
 
     StockService.all = function() {
-      return $http({
-        url: '/data/stocks.json',
+      var symbols = _symbols.slice();
+      var temp;
+      $http({
+        url: '/data/a.json'
       })
-        .then(function(response) {
-          StockService.stocks = response.data;
-          return StockService.stocks;
-        }, function(response) {
-          console.error(response);
-        });
+      .then(function(response) {
+        console.log(response);
+      }, function(response) {
+        console.log(response);
+      });
+      // while ((var symbol = symbols.pop())) {
+      //   if (!!temp) {
+
+      //   } else {
+
+      //   }
+      // }
     };
 
     StockService.dates = function() {
