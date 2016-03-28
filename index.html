@@ -48,7 +48,7 @@
           <div ui-view>
             <div class="row">
               <div class="col-xs-4">
-                <div ui-view="stocks">????</div>
+                <div ui-view="stocks">Loading...</div>
               </div>
 
               <div class="col-xs-8">
@@ -66,11 +66,21 @@
 
     <!-- App -->
     <script src="/js/app.js"></script>
+    
+    <!-- Initializers -->
+    <script src="/js/initializers/flashInitializer.js"></script>
+    <script src="/js/initializers/globalsInitializer.js"></script>
 
     <!-- Directives -->
+    <script src="/js/directives/flashDirective.js"></script>
     <script src="/js/directives/mainNavDirective.js"></script>
 
+    <!-- Filters -->
+    <script src="/js/filters/isEmptyFilter.js"></script>
+
     <!-- Services -->
+    <script src="/js/services/UnderscoreService.js"></script>
+    <script src="/js/services/FlashService.js"></script>
     <script src="/js/services/PortfolioService.js"></script>
     <script src="/js/services/StockService.js"></script>
     <script src="/js/services/TradeService.js"></script>
@@ -81,7 +91,19 @@
     <script src="/js/controllers/StocksCtrl.js"></script>
     <script src="/js/controllers/TradesCtrl.js"></script>
     <script src="/js/controllers/TransactionsCtrl.js"></script>
+
   </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
 
 

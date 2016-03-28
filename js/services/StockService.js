@@ -3,8 +3,8 @@
 // ----------------------------------------
 
 Fideligard.factory('StockService',
-  ['$http',
-  function($http) {
+  ['_', '$http', '$q',
+  function(_, $http, $q) {
 
 
     var _symbols = [
@@ -27,38 +27,44 @@ Fideligard.factory('StockService',
 
     StockService.all = function() {
       var symbols = _symbols.slice();
-      var temp;
-      $http({
-        url: '/data/a.json'
-      })
-      .then(function(response) {
-        console.log(response);
-      }, function(response) {
-        console.log(response);
+      var requests = [];
+      _.each(_symbols, function(symbol) {
+        var request = $http({
+          url: '/data/' + symbol + '.json'
+        });
+        requests.push(request);
       });
-      // while ((var symbol = symbols.pop())) {
-      //   if (!!temp) {
-
-      //   } else {
-
-      //   }
-      // }
+      return $q.all(requests)
+        .then(function(response) {
+          console.log(response);
+          var stocks = _.map(response, function(object) {
+            return object.data.dataset;
+          });
+          StockService.stocks = stocks;
+          return stocks;
+        }, function(response) {
+          console.error(response);
+          return repsonse;
+        });
     };
+
 
     StockService.dates = function() {
       var dates = [],
           companies = _.values(StockService.stocks);
       _.each(companies,  function(company) {
         console.log(company);
-        var d = _.pluck(company.stocks, 'Date');
-        dates = dates.concat(d);
+        dates = dates.concat(_.map(company.data, function(entry) {
+          return entry[0];
+        }));
       });
       return _.uniq(dates);
     };
 
+
     StockService.symbols = function() {
-      return _.map(Object.keys(StockService.stocks), function(key) {
-        return key.toUpperCase();
+      return _.map(_symbols, function(symbol) {
+        return symbol.toUpperCase();
       });
     };
 
