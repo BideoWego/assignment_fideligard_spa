@@ -14,12 +14,7 @@ Fideligard.factory('FlashService',
   ['_', '$rootScope',
   function(_, $rootScope) {
 
-    // Initialize return value
     // ----------------------------------------
-
-    var FlashService = {};
-
-
     // Private
     // ----------------------------------------
 
@@ -41,9 +36,9 @@ Fideligard.factory('FlashService',
     };
 
 
-    var _createTypeIfNotExists = function(type) {
-      if (FlashService.alerts[type] === undefined) {
-        FlashService.alerts[type] = [];
+    var _createTypeIfNotExists = function(service, type) {
+      if (service.alerts[type] === undefined) {
+        service.alerts[type] = [];
       }
     };
 
@@ -65,9 +60,11 @@ Fideligard.factory('FlashService',
       };
     };
 
-
+    // ----------------------------------------
     // Public
     // ----------------------------------------
+
+    var FlashService = {};
 
     FlashService.alerts = {};
 
@@ -77,24 +74,24 @@ Fideligard.factory('FlashService',
           type = options.type,
           message = options.message;
       type = _resolveType(type);
-      _createTypeIfNotExists(type);
-      FlashService.alerts[type].push(message);
-      console.log(FlashService.alerts);
+      _createTypeIfNotExists(this, type);
+      this.alerts[type].push(message);
+      console.log(this.alerts);
     };
 
 
     FlashService.destroy = function(type, id) {
       type = _resolveType(type);
-      FlashService.alerts[type].splice(id, 1);
-      console.log(FlashService.alerts);
+      this.alerts[type].splice(id, 1);
+      console.log(this.alerts);
     };
 
 
     FlashService.init = function() {
       $rootScope.flash = {
-        alerts: FlashService.alerts,
-        create: FlashService.create,
-        destroy: FlashService.destroy
+        alerts: this.alerts,
+        create: this.create,
+        destroy: this.destroy
       };
     };
 

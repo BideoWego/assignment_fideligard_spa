@@ -5,7 +5,7 @@
   </div>
 </header>
 
-
+{{ globals.date }}
 <div class="table-responsive">
   <table class="table">
     <thead>
@@ -19,95 +19,16 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>APPL</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td>{{ 1234.12 | currency }}</td>
+
+      <tr ng-repeat="stock in stocks">
+        <td>{{ stock.dataset_code }}</td>
+        <td>{{ stock.price | currency }}</td>
+        <td>{{ stock.one | currency }}</td>
+        <td>{{ stock.seven | currency }}</td>
+        <td>{{ stock.thirty | currency }}</td>
         <td><a href="#">Trade</a></td>
       </tr>
 
-      <tr>
-        <td>APPL</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td><a href="#">Trade</a></td>
-      </tr>
-
-      <tr>
-        <td>APPL</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td><a href="#">Trade</a></td>
-      </tr>
-
-      <tr>
-        <td>APPL</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td><a href="#">Trade</a></td>
-      </tr>
-
-      <tr>
-        <td>APPL</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td><a href="#">Trade</a></td>
-      </tr>
-
-      <tr>
-        <td>APPL</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td><a href="#">Trade</a></td>
-      </tr>
-
-      <tr>
-        <td>APPL</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td><a href="#">Trade</a></td>
-      </tr>
-
-      <tr>
-        <td>APPL</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td><a href="#">Trade</a></td>
-      </tr>
-
-      <tr>
-        <td>APPL</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td><a href="#">Trade</a></td>
-      </tr>
-
-      <tr>
-        <td>APPL</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td>{{ 1234.12 | currency }}</td>
-        <td><a href="#">Trade</a></td>
-      </tr>
     </tbody>
   </table>  
 </div>

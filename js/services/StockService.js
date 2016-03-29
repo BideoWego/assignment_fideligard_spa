@@ -6,6 +6,9 @@ Fideligard.factory('StockService',
   ['_', '$http', '$q',
   function(_, $http, $q) {
 
+    // ----------------------------------------
+    // Private
+    // ----------------------------------------
 
     var _symbols = [
       'a',
@@ -20,52 +23,46 @@ Fideligard.factory('StockService',
       'twtr'
     ];
 
+    var _stocks = {};
 
-    var StockService = {};
-
-    StockService.stocks = [];
-
-    StockService.all = function() {
-      var symbols = _symbols.slice();
-      var requests = [];
+    var _createRequests = function() {
+      var requests = {};
       _.each(_symbols, function(symbol) {
         var request = $http({
           url: '/data/' + symbol + '.json'
         });
-        requests.push(request);
+        requests[symbol] = request;
       });
+      return requests;
+    };
+
+
+    var _all = function() {
+      var requests = _createRequests();
       return $q.all(requests)
         .then(function(response) {
-          console.log(response);
-          var stocks = _.map(response, function(object) {
+          _stocks = _.map(response, function(object) {
             return object.data.dataset;
           });
-          StockService.stocks = stocks;
-          return stocks;
+          return _stocks;
         }, function(response) {
           console.error(response);
-          return repsonse;
+          return response;
         });
     };
 
 
-    StockService.dates = function() {
-      var dates = [],
-          companies = _.values(StockService.stocks);
-      _.each(companies,  function(company) {
-        console.log(company);
-        dates = dates.concat(_.map(company.data, function(entry) {
-          return entry[0];
-        }));
-      });
-      return _.uniq(dates);
-    };
+    // ----------------------------------------
+    // Public
+    // ----------------------------------------
 
+    var StockService = {};
 
-    StockService.symbols = function() {
-      return _.map(_symbols, function(symbol) {
-        return symbol.toUpperCase();
-      });
+    StockService.all = function() {
+      if (_.isEmpty(_stocks)) {
+        return _all();
+      }
+      return _stocks;
     };
 
     return StockService;

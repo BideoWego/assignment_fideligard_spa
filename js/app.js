@@ -24,14 +24,22 @@ Fideligard.config(function($stateProvider, $urlRouterProvider) {
         }
       },
       resolve: {
-        stocks: ['StockService', function(StockService) {
+        stocks: function(StockService) {
+          console.log(StockService);
           return StockService.all();
+        },
+        companies: ['stocks', 'CompanyService', function(stocks, CompanyService) {
+          console.log(stocks, CompanyService);
+          CompanyService.init(stocks);
+          return CompanyService.all();
         }],
-        dates: ['stocks', 'StockService', function(stocks, StockService) {
-          return StockService.dates();
+        dates: ['companies', 'DateService', function(companies, DateService) {
+          console.log(companies, DateService);
+          return DateService.all();
         }],
-        symbols: ['stocks', 'StockService', function(stocks, StockService) {
-          return StockService.symbols();
+        dateInfo: ['companies', 'DateService', function(companies, DateService) {
+          console.log(companies, DateService);
+          return DateService.getInfo();
         }]
       }
     })
