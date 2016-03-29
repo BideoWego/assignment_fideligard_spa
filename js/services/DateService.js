@@ -21,7 +21,6 @@ Fideligard.factory('DateService',
         current: _.last(dates),
         index: _.lastIndexOf(dates),
         setDate: function() {
-          console.log('asdf');
           this.current = dates[this.index];
         }
       };

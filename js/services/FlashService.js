@@ -14,6 +14,8 @@ Fideligard.factory('FlashService',
   ['_', '$rootScope',
   function(_, $rootScope) {
 
+    // TODO incorporate flash messages
+
     // ----------------------------------------
     // Private
     // ----------------------------------------
